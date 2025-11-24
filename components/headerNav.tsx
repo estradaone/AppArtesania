@@ -213,6 +213,7 @@ export default function HeaderNav({ scrollY }: { scrollY?: Animated.Value }) {
                     </View>
                 </SafeAreaView>
             </Animated.View>
+
             <ModalBusqueda
                 onClose={() => setModalBusquedaVisible(false)}
                 visible={modalBusquedaVisible}

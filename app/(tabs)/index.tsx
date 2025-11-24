@@ -35,7 +35,7 @@ type Producto = {
 const carouselItems = [
   {
     title: 'Artesanía en barro',
-    image: require('../../assets/images/carusel4.png'),
+    image: require('../../assets/images/carusel4.jpg'),
   },
   {
     title: 'Platos de barros',
@@ -43,7 +43,7 @@ const carouselItems = [
   },
   {
     title: 'Cestería natural',
-    image: require('../../assets/images/img53.png'),
+    image: require('../../assets/images/img53.jpg'),
   },
 ];
 
