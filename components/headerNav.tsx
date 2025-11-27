@@ -158,9 +158,6 @@ export default function HeaderNav({ scrollY }: { scrollY?: Animated.Value }) {
                             <TouchableOpacity onPress={() => router.push('/(user)/tienda')}>
                                 <Text style={styles.menuItem}>🛍️ Tienda</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => router.push('/screens/cameraLiteScreen')}>
-                                <Text style={styles.menuItem}> Permisos</Text>
-                            </TouchableOpacity>
                             <TouchableOpacity onPress={() => router.push('/(user)/nosotros')}>
                                 <Text style={styles.menuItem}>👥 Nosotros</Text>
                             </TouchableOpacity>

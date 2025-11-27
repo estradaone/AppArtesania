@@ -28,9 +28,8 @@ export default function RegistrarScreen() {
     });
 
     const router = useRouter();
-    const { login } = useAuth(); // ✅ usa login del contexto
+    const { login } = useAuth();
 
-    // 🔎 Validaciones
     const validarEmail = (email: string): boolean =>
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
@@ -60,7 +59,7 @@ export default function RegistrarScreen() {
             contrasena: camposVacios.contrasena || contrasenaInvalida,
         });
 
-        if (Object.values(camposVacios).some((v) => v)) {
+        if (Object.values(camposVacios).some(Boolean)) {
             Alert.alert('Campos incompletos', 'Por favor completa todos los campos.');
             return;
         }
@@ -83,7 +82,7 @@ export default function RegistrarScreen() {
         setLoading(true);
 
         try {
-            const res = await fetch(`${API_BASE_URL}/registrarUsuario`, {
+            const res = await fetch(`${API_BASE_URL}/registrarUsuarioMovil`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -103,7 +102,6 @@ export default function RegistrarScreen() {
                 } else {
                     Alert.alert('Error', data.error || 'No se pudo registrar.');
                 }
-                setLoading(false);
                 return;
             }
 
@@ -112,7 +110,6 @@ export default function RegistrarScreen() {
             if (!usuario || !usuario.id_usuario) {
                 console.error('Respuesta inesperada del servidor:', data);
                 Alert.alert('Error', 'No se recibió información del usuario.');
-                setLoading(false);
                 return;
             }
 
@@ -124,6 +121,7 @@ export default function RegistrarScreen() {
                 estado: usuario.estado,
             });
 
+            Alert.alert('Registro exitoso', `Bienvenido ${usuario.nombre}`);
             router.replace('/');
         } catch (error) {
             console.error('Error en registro:', error);

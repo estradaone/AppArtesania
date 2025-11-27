@@ -6,20 +6,22 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 import { AuthProvider } from '../context/authContext';
 
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
-
-export default function RootLayout() {
+export default function UserLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <AuthProvider>
       <CarritoProvider>
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+          <Stack
+            screenOptions={{
+              headerShown: false, // 👈 oculta el header en todas las pantallas dentro de (user)
+            }}
+          >
+            {/* Si tienes pantallas específicas, puedes declararlas aquí */}
+            <Stack.Screen name="index" />
+            <Stack.Screen name="login" />
+            <Stack.Screen name="tienda" />
           </Stack>
           <StatusBar style="auto" />
         </ThemeProvider>

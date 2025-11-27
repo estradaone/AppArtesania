@@ -12,8 +12,9 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
+        headerShown: false,   // 👈 oculta el header
+        tabBarStyle: { display: 'none' }, // 👈 oculta el tab bar globalmente
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
         tabBarButton: HapticTab,
       }}>
       <Tabs.Screen

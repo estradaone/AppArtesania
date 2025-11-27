@@ -1,22 +1,37 @@
 import { FontAwesome } from '@expo/vector-icons';
+import * as Linking from 'expo-linking';
+import { useRouter } from 'expo-router';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Footer() {
+    const router = useRouter();
+
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>FOOTER</Text>
             <Text style={styles.subtitle}>Redes sociales</Text>
 
             <View style={styles.icons}>
-                <FontAwesome name="facebook" size={24} color="#333" />
-                <FontAwesome name="instagram" size={24} color="#333" />
-                <FontAwesome name="whatsapp" size={24} color="#333" />
-                <FontAwesome name="envelope" size={24} color="#333" />
+                <TouchableOpacity onPress={() => Linking.openURL('https://www.facebook.com/soluciones.hadik')}>
+                    <FontAwesome name="facebook" size={24} color="#333" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => Linking.openURL('https://www.instagram.com/soluciones_hadik')}>
+                    <FontAwesome name="instagram" size={24} color="#333" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => Linking.openURL('https://wa.me/529932802311')}>
+                    <FontAwesome name="whatsapp" size={24} color="#333" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => Linking.openURL('mailto:solucioneshadik@gmail.com')}>
+                    <FontAwesome name="envelope" size={24} color="#333" />
+                </TouchableOpacity>
             </View>
 
             <View style={styles.links}>
-                <TouchableOpacity><Text style={styles.link}>Nosotros</Text></TouchableOpacity>
-                <TouchableOpacity><Text style={styles.link}>Contacto</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => router.push('/(user)/nosotros')}>
+                    <Text style={styles.link}>Nosotros</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => router.push('/(user)/ayuda')}>
+                    <Text style={styles.link}>¿Te ayudamos?</Text>
+                </TouchableOpacity>
             </View>
 
             <Text style={styles.legal}>© Tu tienda 2025. © Todos los derechos reservados</Text>
@@ -32,8 +47,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderColor: '#ddd',
     },
-    title: { fontWeight: 'bold', color: '#333', fontSize: 14 },
-    subtitle: { color: '#666', marginBottom: 8 },
+    subtitle: { fontWeight: 'bold', color: '#333', fontSize: 14, marginBottom: 8 },
     icons: {
         flexDirection: 'row',
         gap: 20,
@@ -44,6 +58,10 @@ const styles = StyleSheet.create({
         gap: 20,
         marginBottom: 8,
     },
-    link: { color: '#666', fontSize: 14 },
-    legal: { fontSize: 12, color: '#999', textAlign: 'center' },
+    link: {
+        fontSize: 14,
+        color: '#4B3F2F',
+        textDecorationLine: 'underline',
+    },
+    legal: { fontSize: 12, color: '#999', textAlign: 'center', marginTop: 8 },
 });
